@@ -28,7 +28,7 @@ export default {
     PhotoArea,
     DateForm,
   },
-  methods: {
+  methods: { 
     getDay: function() {
       let today = new Date();
       return today.getDate();
