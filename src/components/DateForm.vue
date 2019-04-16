@@ -1,14 +1,16 @@
 <template>
   <div class="date-form">
-    <form @submit="setDate">
-      <select v-model="selected">
-        <option disabled value>choose day.</option>
-        <option v-for="option in options">{{option}}</option>
-      </select>
-      <button>blast off</button>
-    </form>
+    <div class="title">
+      <h1>far out.</h1>
+      <p>your daily dose of galactic bliss.</p>
+    </div>
+    <select @change="setDate" v-model="selected">
+      <option disabled value>choose a day. see the stars.</option>
+      <option v-for="option in options">{{option}}</option>
+    </select>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -16,9 +18,6 @@ export default {
   props: ["currDay"],
   data() {
     return {
-      // year: "YYYY",
-      // month: "MM",
-      // day: "DD",
       selected: "",
       options: this.setDays()
     };
@@ -43,45 +42,51 @@ export default {
 
 <style scoped>
 .date-form {
-  margin-top: 20px;
-}
-
-form {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
 
-select, option {
+
+h1 {
+  font-size: 50px;
+  font-weight: 100;
+}
+
+.title {
+  text-align: left;
+  margin-left: 65px;
+}
+
+select,
+option {
   text-align: center;
   height: 35px;
   border: none;
-  width: 135px;
+  width: 250px;
   font-size: 15px;
   border-radius: 100%;
   background: linear-gradient(to bottom, #29323c, #485563);
-  color: white;
-  font-family: 'Avenir', sans-serif;
-  margin-bottom: 25px;
+  color: #f8f9fa;
+  font-family: "Avenir", sans-serif;
   outline: none;
+  margin: 0 65px;
+}
+
+p {
+  line-height: 0px;
 }
 
 button {
   width: 95px;
   height: 35px;
-  background-color: white;
   border-radius: 45px;
   border: none;
-  font-family: 'Avenir', sans-serif;
+  font-family: "Avenir", sans-serif;
   letter-spacing: 1.25px;
   background: linear-gradient(to bottom, #29323c, #485563);
-  color: white;
+  color: #f8f9fa;
   outline: none;
 }
-
-button:hover {
-  background-color: aqua;
-}
-
 </style>
 

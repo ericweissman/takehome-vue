@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <Header/>
     <DateForm 
       v-on:set-date="setDate"
       v-bind:currDay="day"
@@ -10,7 +9,6 @@
 </template>
 
 <script>
-import Header from "./components/Header.vue";
 import PhotoArea from "./components/PhotoArea.vue";
 import DateForm from "./components/DateForm.vue";
 import axios from "axios";
@@ -27,11 +25,10 @@ export default {
     };
   },
   components: {
-    Header,
     PhotoArea,
-    DateForm
+    DateForm,
   },
-  methods: {
+  methods: { 
     getDay: function() {
       let today = new Date();
       return today.getDate();
@@ -86,6 +83,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   margin: 45px 0;
-  color: #f6f7f8;
+  color: #E5E7EB
+;
 }
 </style>
