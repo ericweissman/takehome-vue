@@ -1,8 +1,11 @@
 <template>
   <div id="app">
     <Header/>
-    <DateForm/>
-    <PhotoArea v-bind:photo="photo"/>
+    <DateForm 
+      v-on:set-date="setDate"
+      v-bind:currDay="day"
+      />
+    <PhotoArea v-bind:data="data" v-bind:error="error"/>
   </div>
 </template>
 
@@ -16,7 +19,11 @@ export default {
   name: "app",
   data() {
     return {
-      photo: ""
+      year: this.getYear(),
+      month: this.getMonth(),
+      day: this.getDay(),
+      error: {},
+      data: {},
     };
   },
   components: {
@@ -24,13 +31,43 @@ export default {
     PhotoArea,
     DateForm
   },
+  methods: {
+    getDay: function() {
+      let today = new Date();
+      return today.getDate();
+    },
+    getMonth: function() {
+      let today = new Date();
+      return today.getMonth() + 1;
+    },
+    getYear: function() {
+      let today = new Date();
+      return today.getFullYear();
+    },
+    setDate(day) {
+      this.day = day;
+      this.setPhoto(day);
+    },
+    setPhoto(day) {
+      axios
+        .get(
+          `https://api.nasa.gov/planetary/apod?api_key=oiiBWI12fEIdoozBSJE2Pl6ndgxFyLloKW8nQRnN&date=${
+            this.year
+          }-${this.month}-${day}`
+        )
+        .then(response => (this.data = response.data))
+        .catch(err => this.error = err);
+    }
+  },
   created() {
     axios
       .get(
-        "https://api.nasa.gov/planetary/apod?api_key=oiiBWI12fEIdoozBSJE2Pl6ndgxFyLloKW8nQRnN"
+        `https://api.nasa.gov/planetary/apod?api_key=oiiBWI12fEIdoozBSJE2Pl6ndgxFyLloKW8nQRnN&date=${
+          this.year
+        }-${this.month}-${this.day}`
       )
-      .then(response => (this.photo = response.data.url))
-      .catch(err => console.log(err));
+      .then(response => (this.data = response.data))
+      .catch(err => this.error = err);
   }
 };
 </script>
@@ -40,7 +77,7 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: black;
+  background-color: #0b0c0d;
 }
 
 #app {
@@ -48,7 +85,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  margin-top: 60px;
-  color: white;
+  margin: 45px 0;
+  color: #f6f7f8;
 }
 </style>
