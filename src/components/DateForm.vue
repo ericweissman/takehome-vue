@@ -1,17 +1,11 @@
 <template>
   <div class="date-form">
     <form @submit="setDate">
-      <!-- <p>choose a date between 06/16/1995 and {{currDay}}</p>
-      <input v-model="year" type="number" placeholder="YYYY">
-      <input v-model="month" type="number" placeholder="MM">
-      <input v-model="day" type="number" placeholder="DD">
-      <input type="submit" placeholder="Submit">-->
-      <!-- <button class="submit-btn">space out.</button> -->
       <select v-model="selected">
-        <option disabled value>Please select one</option>
+        <option disabled value>choose day.</option>
         <option v-for="option in options">{{option}}</option>
       </select>
-      <input type="submit" placeholder="Submit">
+      <button>blast off</button>
     </form>
   </div>
 </template>
@@ -22,9 +16,9 @@ export default {
   props: ["currDay"],
   data() {
     return {
-      year: "YYYY",
-      month: "MM",
-      day: "DD",
+      // year: "YYYY",
+      // month: "MM",
+      // day: "DD",
       selected: "",
       options: this.setDays()
     };
@@ -34,21 +28,6 @@ export default {
       e.preventDefault();
       this.$emit("set-date", this.selected);
     },
-    // setDate(e) {
-    //   e.preventDefault();
-    //   const date = {
-    //     year: this.year,
-    //     month: this.month,
-    //     day: this.day
-    //     // year: parseInt(this.year),
-    //     // month: parseInt(this.month),
-    //     // day: parseInt(this.day),
-    //   };
-    //   this.$emit("set-date", date);
-    //   this.year = "YYYY";
-    //   this.month = "MM";
-    //   this.day = "DD";
-    // },
     setDays() {
       let date = new Date();
       let day = date.getDate();
@@ -59,9 +38,6 @@ export default {
       return values;
     }
   }
-  // created() {
-  //   this.options = this.setDays(currDay)
-  // }
 };
 </script>
 
@@ -70,14 +46,42 @@ export default {
   margin-top: 20px;
 }
 
-input {
-  background-color: rgb(249, 240, 240);
-  height: 35px;
-  border: none;
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#__lpform_input_idx_1_icon {
-  display: none;
+select, option {
+  text-align: center;
+  height: 35px;
+  border: none;
+  width: 135px;
+  font-size: 15px;
+  border-radius: 100%;
+  background: linear-gradient(to bottom, #29323c, #485563);
+  color: white;
+  font-family: 'Avenir', sans-serif;
+  margin-bottom: 25px;
+  outline: none;
 }
+
+button {
+  width: 95px;
+  height: 35px;
+  background-color: white;
+  border-radius: 45px;
+  border: none;
+  font-family: 'Avenir', sans-serif;
+  letter-spacing: 1.25px;
+  background: linear-gradient(to bottom, #29323c, #485563);
+  color: white;
+  outline: none;
+}
+
+button:hover {
+  background-color: aqua;
+}
+
 </style>
 
