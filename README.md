@@ -1,4 +1,4 @@
-# vue-takehome
+# takehome challenge - vue.js
 
 ### Background
 This project was an exercise similar to a takehome challenge one might receive during an interview process. I was tasked with consuming the NASA Photo of the Day API and buidling a frontend using an unfamiliar technology: Vue.js
