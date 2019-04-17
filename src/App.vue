@@ -48,7 +48,7 @@ export default {
     setPhoto(day) {
       axios
         .get(
-          `https://api.nasa.gov/planetary/apod?api_key=oiiBWI12fEIdoozBSJE2Pl6ndgxFyLloKW8nQRnN&date=${
+          `https://api.nasa.gov/planetary/apod?api_key=${process.env.VUE_APP_APIKEY}&date=${
             this.year
           }-${this.month}-${day}`
         )
@@ -59,7 +59,7 @@ export default {
   created() {
     axios
       .get(
-        `https://api.nasa.gov/planetary/apod?api_key=oiiBWI12fEIdoozBSJE2Pl6ndgxFyLloKW8nQRnN&date=${
+        `https://api.nasa.gov/planetary/apod?api_key=${process.env.VUE_APP_APIKEY}&date=${
           this.year
         }-${this.month}-${this.day}`
       )
